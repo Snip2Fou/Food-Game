@@ -1,17 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ObjetSelector : MonoBehaviour
 {
     private Camera mainCamera;
 
-    [SerializeField] private GameObject handSelector;
+    [SerializeField] public GameObject handSelector;
+    [SerializeField] private InputActionReference interactActionReference;
+
+    private GameObject lastObjectHovered;
+    public GameObject hoveredGrabableObject;
+    public GameObject selectedObject;
 
     // Start is called before the first frame update
     void Start()
     {
         mainCamera = Camera.main;
+    }
+
+    void OnEnable() 
+    {
+        interactActionReference.action.Enable();
+        interactActionReference.action.started += OnInteract;
+    }
+
+    void OnDisable()
+    {
+       interactActionReference.action.Disable(); 
     }
 
     // Update is called once per frame
@@ -25,15 +41,37 @@ public class ObjetSelector : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(ray, out hit, 1.5f, LayerMask.GetMask("Grabable")))
         {   
-            Debug.Log("Ray " + hit.collider.name);   
-            handSelector.SetActive(true);   
-            handSelector.transform.position = hit.collider.gameObject.transform.position;
-            handSelector.transform.Rotate(new Vector3(handSelector.transform.rotation.x, transform.rotation.y + 180,  handSelector.transform.rotation.z));
+            hoveredGrabableObject = hit.collider.gameObject;
+            lastObjectHovered = hoveredGrabableObject;
+            if(hoveredGrabableObject.GetComponent<Outline>() == null)
+            {
+                hoveredGrabableObject.AddComponent<Outline>();
+            }
+            hoveredGrabableObject.GetComponent<Outline>().enabled = true;
         }
         else
         {
-            handSelector.SetActive(false); 
+            if(hoveredGrabableObject != null)
+            {
+                hoveredGrabableObject.GetComponent<Outline>().enabled = false;
+            }
+            hoveredGrabableObject = null;
         }
+    }
 
+    private void OnInteract(InputAction.CallbackContext context)
+    {
+        Vector2 mousePos = Input.mousePosition;
+        if(hoveredGrabableObject != null)
+        {
+            handSelector.SetActive(true);   
+            handSelector.transform.SetPositionAndRotation(hoveredGrabableObject.transform.position, new Quaternion(handSelector.transform.rotation.x, transform.rotation.y,  handSelector.transform.rotation.z, 1));
+            selectedObject = hoveredGrabableObject;
+        }
+        else
+        {
+            handSelector.SetActive(false);   
+            selectedObject = null;
+        }
     }
 }

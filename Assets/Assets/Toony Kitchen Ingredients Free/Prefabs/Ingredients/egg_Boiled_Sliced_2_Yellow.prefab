@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7755079831996169664}
   - component: {fileID: 2625209311050939239}
   - component: {fileID: 654608610984447119}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: egg_Boiled_Sliced_2_Yellow
   m_TagString: Untagged
   m_Icon: {fileID: 0}

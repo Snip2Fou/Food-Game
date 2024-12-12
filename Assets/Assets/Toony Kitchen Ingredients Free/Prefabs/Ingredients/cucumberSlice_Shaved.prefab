@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3543067811113899160}
   - component: {fileID: 4422695881551892775}
   - component: {fileID: 2609371852052508053}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: cucumberSlice_Shaved
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -1,3 +1,4 @@
+using Unity.Mathematics;
 using UnityEngine;
 
 public class LeftRightHandManager : MonoBehaviour
@@ -9,60 +10,140 @@ public class LeftRightHandManager : MonoBehaviour
     [SerializeField] private Camera leftHandCamera;
     [SerializeField] private Camera rightHandCamera;
 
-    public void SetHandObject(int witch)
+    private GameObject new_hand_object;
+
+    public void HandObject(int witch)
     {
-        GameObject new_hand_object = objectSelector.selectedObject;
+        new_hand_object = objectSelector.selectedObject;
         
-        if(witch == 0)
+        if(LayerMask.NameToLayer("Pickable") == new_hand_object.layer)
         {
-            leftHandObject = new_hand_object;
-            SetObjectPositionInUi(leftHandObject.transform, leftHandCamera);
+            TakeObject(witch);
         }
-        else if(witch == 1)
+        else if(LayerMask.NameToLayer("Container") == new_hand_object.layer)
         {
-            rightHandObject = new_hand_object;
-            SetObjectPositionInUi(rightHandObject.transform, rightHandCamera);
+            PlaceObjectInContainer(witch);
+        }
+        else
+        {
+            DropObject(witch);
         }
 
         objectSelector.selectedObject = null;
         objectSelector.handSelector.SetActive(false);
     }
 
-    private void SetObjectPositionInUi(Transform _objectTransform, Camera objectCamera)
+    private void TakeObject(int witch)
     {
-        _objectTransform.rotation = Quaternion.Euler(0, 90, 0);
+        if(witch == 0)
+        {
+            if(leftHandObject != null){
+                leftHandObject.transform.position = new_hand_object.transform.position;
+                leftHandObject.transform.rotation = Quaternion.identity;
+            }
+            leftHandObject = new_hand_object;
+            SetObjectPositionInUi(leftHandObject.transform, leftHandCamera, Quaternion.Euler(-45, 25, 15));
+        }
+        else if(witch == 1)
+        {
+            if(rightHandObject != null){
+                rightHandObject.transform.position = new_hand_object.transform.position;
+                rightHandObject.transform.rotation = Quaternion.identity;
+            }
+            rightHandObject = new_hand_object;
+            SetObjectPositionInUi(rightHandObject.transform, rightHandCamera, Quaternion.Euler(-45, -25, 15));
+        }
+    }
+    
+    private void PlaceObjectInContainer(int witch)
+    {
+         if(witch == 0)
+        {
+            if(leftHandObject != null)
+            {
+                SetObjectPositionInContainer(leftHandObject.transform, objectSelector.selectedObject.transform);
+                leftHandObject = null;
+            }
+        }
+        else if(witch == 1)
+        {
+            if(rightHandObject != null)
+            {
+                SetObjectPositionInContainer(rightHandObject.transform, objectSelector.selectedObject.transform);
+                rightHandObject = null;
+            }
+        }
+    }
+    
+    private void DropObject(int witch)
+    {
+        if(witch == 0)
+        {
+            if(leftHandObject != null)
+            {
+                SetObjectPositionInWorld(leftHandObject.transform);
+                leftHandObject = null;
+            }
+        }
+        else if(witch == 1)
+        {
+            if(rightHandObject != null)
+            {
+                SetObjectPositionInWorld(rightHandObject.transform);
+                rightHandObject = null;
+            }
+        }
+    }
+
+    private void SetObjectPositionInUi(Transform _objectTransform, Camera objectCamera, Quaternion _rotation)
+    {
+        _objectTransform.rotation = _rotation;
+
         Bounds objectBounds = CalculateGlobalBounds(_objectTransform);
 
-        // Taille maximale de l'objet (pour ajuster la distance)
         float objectHeight = objectBounds.size.y;
         float objectWidth = objectBounds.size.x;
 
-        // Calculer la distance optimale en fonction du FOV et de la largeur/hauteur
         float fovInRadians = objectCamera.fieldOfView * Mathf.Deg2Rad;
         float optimalDistance = Mathf.Max(
-            (objectHeight / 2) / Mathf.Tan(fovInRadians / 2), // Distance pour la hauteur
-            (objectWidth / 2) / (Mathf.Tan(fovInRadians / 2) / objectCamera.aspect) // Distance pour la largeur
+            (objectHeight / 2) / Mathf.Tan(fovInRadians / 2), 
+            (objectWidth / 2) / (Mathf.Tan(fovInRadians / 2) / objectCamera.aspect) 
         );
 
-        // Positionner l'objet devant la caméra
+        Vector3 cameraPosition = objectCamera.transform.position;
         Vector3 cameraForward = objectCamera.transform.forward;
-        _objectTransform.position = objectCamera.transform.position + cameraForward * optimalDistance +  new Vector3(0,0,0.5f);
 
-        // Centrer l'objet
-        _objectTransform.position = new Vector3(_objectTransform.position.x, _objectTransform.position.y, _objectTransform.position.z);
-    }   
+        Vector3 objectCenterOffset = objectBounds.center - _objectTransform.position;
+        _objectTransform.position = cameraPosition + cameraForward * optimalDistance - objectCenterOffset + new Vector3(0,0,0.25f);
+    }  
+
+    private void SetObjectPositionInContainer(Transform _objectTransform, Transform _containerTransform)
+    {
+        _objectTransform.rotation = Quaternion.Euler(0,0,0);
+
+        Bounds objectBounds = CalculateGlobalBounds(_objectTransform);
+
+        _objectTransform.position = new Vector3(_containerTransform.position.x, _containerTransform.position.y + (objectBounds.extents.y / 2), _containerTransform.position.z);
+    }
+
+    private void SetObjectPositionInWorld(Transform _objectTransform)
+    {
+        _objectTransform.rotation = Quaternion.Euler(0,0,0);
+
+        Bounds objectBounds = CalculateGlobalBounds(_objectTransform);
+
+        _objectTransform.position = new Vector3(objectSelector.mousePositionOnSelected.x, objectSelector.mousePositionOnSelected.y + (objectBounds.extents.y / 2), objectSelector.mousePositionOnSelected.z);
+    } 
 
     private Bounds CalculateGlobalBounds(Transform target)
     {
-        Bounds bounds = new Bounds(target.position, Vector3.zero); // Initialisation avec un point central
+        Bounds bounds = new Bounds(target.position, Vector3.zero);
 
-        // Récupérer tous les MeshRenderers dans la hiérarchie
         MeshRenderer[] renderers = target.GetComponentsInChildren<MeshRenderer>();
 
         if (renderers.Length == 0)
             return bounds;
 
-        // Étendre la Bounding Box pour inclure tous les MeshRenderers
         foreach (MeshRenderer renderer in renderers)
         {
             bounds.Encapsulate(renderer.bounds);

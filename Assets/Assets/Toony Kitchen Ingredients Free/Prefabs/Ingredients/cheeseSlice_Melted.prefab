@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5551767895158981617}
   - component: {fileID: 1394154658158210916}
   - component: {fileID: 8816470273296249009}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: cheeseSlice_Melted
   m_TagString: Untagged
   m_Icon: {fileID: 0}

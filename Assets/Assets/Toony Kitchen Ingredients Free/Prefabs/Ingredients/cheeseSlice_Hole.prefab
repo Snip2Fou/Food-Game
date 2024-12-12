@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1122476111978899226}
   - component: {fileID: 1873272551435126497}
   - component: {fileID: 8247700345985837927}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: cheeseSlice_Hole
   m_TagString: Untagged
   m_Icon: {fileID: 0}

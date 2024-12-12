@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4188335030486199029}
   - component: {fileID: 4446541557638953621}
   - component: {fileID: 2588031603273268301}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: potato_Half_2_Cooked
   m_TagString: Untagged
   m_Icon: {fileID: 0}

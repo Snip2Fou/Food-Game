@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8058602690883168781}
   - component: {fileID: 8227459007615300521}
   - component: {fileID: 2317552488373393151}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: auberginePiece_Burnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}

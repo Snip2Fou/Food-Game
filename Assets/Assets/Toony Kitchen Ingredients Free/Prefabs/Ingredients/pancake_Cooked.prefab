@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4460133907588492853}
   - component: {fileID: 2209728894488885959}
   - component: {fileID: 6645258641608586034}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: pancake_Cooked
   m_TagString: Untagged
   m_Icon: {fileID: 0}

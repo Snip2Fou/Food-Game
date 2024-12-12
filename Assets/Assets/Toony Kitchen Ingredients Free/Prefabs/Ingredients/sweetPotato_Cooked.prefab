@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 190846187472883404}
   - component: {fileID: 3290641152660036326}
   - component: {fileID: 3003063991078949982}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: sweetPotato_Cooked
   m_TagString: Untagged
   m_Icon: {fileID: 0}

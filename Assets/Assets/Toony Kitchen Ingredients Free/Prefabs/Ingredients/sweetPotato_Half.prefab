@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3677627197857923531}
   - component: {fileID: 2619869140957252066}
   - component: {fileID: 2289703963612372725}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: sweetPotato_Half
   m_TagString: Untagged
   m_Icon: {fileID: 0}

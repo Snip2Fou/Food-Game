@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4711741477685209024}
   - component: {fileID: 9102965932898026679}
   - component: {fileID: 781486081115622223}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: onion_White
   m_TagString: Untagged
   m_Icon: {fileID: 0}

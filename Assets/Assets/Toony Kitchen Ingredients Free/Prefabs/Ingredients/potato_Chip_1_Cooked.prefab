@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2378376463415228465}
   - component: {fileID: 135521239114763003}
   - component: {fileID: 8673835368058214981}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: potato_Chip_1_Cooked
   m_TagString: Untagged
   m_Icon: {fileID: 0}

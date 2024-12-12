@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2601390388977534920}
   - component: {fileID: 8266595564299557930}
   - component: {fileID: 7233129401604462301}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: corn_Cob
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 4193433211773433042}
   - component: {fileID: 3104285894853242404}
   - component: {fileID: 2034805894073377546}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: corn_Leaves
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 465708107852896823}
   - component: {fileID: 2231234955917494557}
   - component: {fileID: 6111108938784789380}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: corn_Pieces
   m_TagString: Untagged
   m_Icon: {fileID: 0}

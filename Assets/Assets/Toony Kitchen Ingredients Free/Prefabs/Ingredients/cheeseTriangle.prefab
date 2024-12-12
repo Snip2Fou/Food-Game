@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8241485470417148332}
   - component: {fileID: 274610383180543677}
   - component: {fileID: 5356512873066107980}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: cheeseTriangle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

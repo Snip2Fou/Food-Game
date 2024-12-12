@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1869244934686191892}
   - component: {fileID: 132122909338075340}
   - component: {fileID: 1947065922765549505}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: sandwichBun_Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3421326768208677175}
   - component: {fileID: 4688140314547538687}
   - component: {fileID: 125446723997190288}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: mushroom_Hollow_Cooked
   m_TagString: Untagged
   m_Icon: {fileID: 0}

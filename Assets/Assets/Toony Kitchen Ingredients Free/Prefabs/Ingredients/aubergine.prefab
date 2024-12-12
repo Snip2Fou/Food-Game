@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2460310093057327646}
   - component: {fileID: 8678449133138923148}
   - component: {fileID: 1305473820719674538}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: aubergine_leaf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 2240130726324106290}
   - component: {fileID: 4957071135318081413}
   - component: {fileID: 4115173401109374610}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: aubergine
   m_TagString: Untagged
   m_Icon: {fileID: 0}

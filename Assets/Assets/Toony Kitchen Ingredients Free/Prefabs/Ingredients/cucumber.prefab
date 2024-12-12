@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7817480977221563870}
   - component: {fileID: 7552300485268779407}
   - component: {fileID: 838686422035287220}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: cucumber
   m_TagString: Untagged
   m_Icon: {fileID: 0}

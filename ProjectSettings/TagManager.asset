@@ -8,11 +8,11 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Grabable
+  - Pickable
   - Water
   - UI
-  - HandMenuUI
-  - 
+  - Placement
+  - Container
   - 
   - 
   - 

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9170059546555090767}
   - component: {fileID: 7152521154148383879}
   - component: {fileID: 8833441448723604176}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: cheeseWheel_Wax
   m_TagString: Untagged
   m_Icon: {fileID: 0}

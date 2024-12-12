@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 961331603363379444}
   - component: {fileID: 3480568325126158775}
   - component: {fileID: 6652275790222107120}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: bacon_Cooked
   m_TagString: Untagged
   m_Icon: {fileID: 0}

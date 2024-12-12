@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8855045794496412481}
   - component: {fileID: 1454591592083012393}
   - component: {fileID: 4786038700149447592}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: onion_Spring_Slice
   m_TagString: Untagged
   m_Icon: {fileID: 0}

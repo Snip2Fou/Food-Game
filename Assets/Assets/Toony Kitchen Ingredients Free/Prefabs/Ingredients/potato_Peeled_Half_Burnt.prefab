@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1218090985657802827}
   - component: {fileID: 6498871624119770822}
   - component: {fileID: 7527605139169420992}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: potato_Peeled_Half_Burnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}

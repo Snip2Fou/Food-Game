@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8231590677393206931}
   - component: {fileID: 6387469609291762027}
   - component: {fileID: 7078884261000696216}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: aubergineSlice_Cooked
   m_TagString: Untagged
   m_Icon: {fileID: 0}

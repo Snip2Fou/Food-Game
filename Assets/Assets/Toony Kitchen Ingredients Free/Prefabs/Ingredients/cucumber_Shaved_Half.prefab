@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1396520968774395199}
   - component: {fileID: 8567251357245493007}
   - component: {fileID: 4783709217839674398}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: cucumber_Shaved_Half
   m_TagString: Untagged
   m_Icon: {fileID: 0}

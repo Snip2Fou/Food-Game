@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5741706991781405705}
   - component: {fileID: 3460296966749619390}
   - component: {fileID: 4201188519654360159}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: pancake_Burnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}

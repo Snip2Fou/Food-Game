@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6080313554327316824}
   - component: {fileID: 7714915482214331588}
   - component: {fileID: 3266605818160241332}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: melon_Sliced_Small_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

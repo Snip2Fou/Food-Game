@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7846889424519459554}
   - component: {fileID: 5053796279400295732}
   - component: {fileID: 7133005183328272307}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: popcorn_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

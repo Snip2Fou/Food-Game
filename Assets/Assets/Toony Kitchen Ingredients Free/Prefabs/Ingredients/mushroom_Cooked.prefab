@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4493171676342741447}
   - component: {fileID: 8032052370713678769}
   - component: {fileID: 4329233061630959516}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: mushroom_Cooked
   m_TagString: Untagged
   m_Icon: {fileID: 0}

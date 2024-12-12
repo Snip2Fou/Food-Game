@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3677493596227366175}
   - component: {fileID: 9084847869548205291}
   - component: {fileID: 952432545994978294}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: tomatoSliceWedge
   m_TagString: Untagged
   m_Icon: {fileID: 0}

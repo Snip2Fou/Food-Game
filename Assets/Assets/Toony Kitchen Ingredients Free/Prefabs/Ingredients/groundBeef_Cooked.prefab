@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2391100494907441532}
   - component: {fileID: 6264358273927652516}
   - component: {fileID: 2985184262121801461}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: groundBeef_Cooked
   m_TagString: Untagged
   m_Icon: {fileID: 0}

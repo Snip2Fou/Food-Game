@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9038451147333771050}
   - component: {fileID: 979314823657898931}
   - component: {fileID: 4482902173837843301}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: chicken_Bone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 4077270459990458118}
   - component: {fileID: 6238262334339371077}
   - component: {fileID: 506513451506132005}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: chicken_Leg_Meat_Burnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}

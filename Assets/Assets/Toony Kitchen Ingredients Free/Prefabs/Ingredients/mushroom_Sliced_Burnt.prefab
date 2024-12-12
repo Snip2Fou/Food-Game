@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2013679550126476328}
   - component: {fileID: 3119345387134858336}
   - component: {fileID: 5234299810735571522}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: mushroom_Sliced_Burnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}

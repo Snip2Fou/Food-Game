@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3290139919387753007}
   - component: {fileID: 8349345209588939269}
   - component: {fileID: 6200549830063451867}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: fish_Burnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}

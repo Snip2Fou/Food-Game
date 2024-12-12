@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3761755454148660021}
   - component: {fileID: 9091547273317176220}
   - component: {fileID: 7141342198244309329}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: burgerBun_Sesame_Burnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}

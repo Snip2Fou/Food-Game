@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3233919016956746364}
   - component: {fileID: 3227265743890954957}
   - component: {fileID: 4732675136793391365}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: chicken_Bone (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 5720130354750506036}
   - component: {fileID: 4753216454611750575}
   - component: {fileID: 5615883897879837131}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: chicken_Bone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 4418209590649881306}
   - component: {fileID: 6645495851828628518}
   - component: {fileID: 3236554932598650117}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: chicken_Cooked
   m_TagString: Untagged
   m_Icon: {fileID: 0}

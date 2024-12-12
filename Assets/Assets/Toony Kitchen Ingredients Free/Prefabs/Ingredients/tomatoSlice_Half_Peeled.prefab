@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1627751402627442125}
   - component: {fileID: 6952238158045833186}
   - component: {fileID: 1004815075368923970}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: tomatoSlice_Half_Peeled
   m_TagString: Untagged
   m_Icon: {fileID: 0}

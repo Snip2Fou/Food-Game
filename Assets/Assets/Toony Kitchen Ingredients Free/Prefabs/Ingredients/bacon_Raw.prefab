@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7325706518970223822}
   - component: {fileID: 6212184054156746939}
   - component: {fileID: 7484782019652318238}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: bacon_Raw
   m_TagString: Untagged
   m_Icon: {fileID: 0}

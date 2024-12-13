@@ -57,21 +57,15 @@ public class LeftRightHandManager : MonoBehaviour
     
     private void PlaceObjectInContainer(int witch)
     {
-         if(witch == 0)
+        if(witch == 0 && leftHandObject != null)
         {
-            if(leftHandObject != null)
-            {
-                SetObjectPositionInContainer(leftHandObject.transform, objectSelector.selectedObject.transform);
-                leftHandObject = null;
-            }
+            SetObjectPositionInContainer(leftHandObject.transform, objectSelector.selectedObject.transform);
+            leftHandObject = null;
         }
-        else if(witch == 1)
+        else if(witch == 1 && rightHandObject != null)
         {
-            if(rightHandObject != null)
-            {
-                SetObjectPositionInContainer(rightHandObject.transform, objectSelector.selectedObject.transform);
-                rightHandObject = null;
-            }
+            SetObjectPositionInContainer(rightHandObject.transform, objectSelector.selectedObject.transform);
+            rightHandObject = null;
         }
     }
     

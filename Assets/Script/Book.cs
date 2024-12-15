@@ -36,6 +36,15 @@ public class Book : MonoBehaviour
     [SerializeField] private TMP_Text displayRecipeIngredients;
     [SerializeField] private TMP_Text displayRecipeDescription;
 
+    //Add Recipe Canvas
+    [Header("Add Recipe Input Text")]
+    [SerializeField] private GameObject createRecipeCanvasDisplayButton;
+    [SerializeField] private GameObject createRecipeCanvas;
+    [SerializeField] private TMP_InputField createRecipeTitle;
+    [SerializeField] private TMP_InputField createRecipeIngredients;
+    [SerializeField] private TMP_InputField createRecipeDescription;
+
+
     private int currentRecipeIndex = 0;
 
     // Start is called before the first frame update
@@ -43,6 +52,7 @@ public class Book : MonoBehaviour
     {
         ShowCurrentRecipe();
         displayCanvas.SetActive(false);
+        createRecipeCanvas.SetActive(false);
     }
 
     private void ShowCurrentRecipe()
@@ -109,5 +119,16 @@ public class Book : MonoBehaviour
     public void HideRecipe()
     {
         displayCanvas.SetActive(false);
+    }
+
+    public void DisplayCreateRecipeCanvas()
+    {
+        createRecipeCanvas.SetActive(true);
+    }
+
+    public void AddCreatedRecipe()
+    {
+        Recipe new_recipe = new Recipe();
+        new_recipe.title = createRecipeTitle.text;
     }
 }

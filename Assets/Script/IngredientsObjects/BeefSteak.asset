@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f0f3c0f3ce20dd4490f1aa938edfff5, type: 3}
+  m_Name: BeefSteak
+  m_EditorClassIdentifier: 
+  name: Beef Steak
+  rawPrefabs: {fileID: 1902271098695974524, guid: 2c25d42adeb174049963f6df4c9b7c9a,
+    type: 3}
+  rawSprite: {fileID: 21300000, guid: a335ab1976f86d743937768bcbdfdda2, type: 3}
+  cookedPrefabs: {fileID: 9201863178861168795, guid: 417983b33f84f1044a4804d1ec12f883,
+    type: 3}
+  cookedSprite: {fileID: 21300000, guid: 68c3fc7c5d9644b4ebe2097d02b3cfb0, type: 3}
+  burntPrefabs: {fileID: 5328997636226339257, guid: 12713fb5b8d11f843a999a6fd1f7563a,
+    type: 3}
+  burntSprite: {fileID: 21300000, guid: 9b27fc306b42436498186c10f711fda7, type: 3}

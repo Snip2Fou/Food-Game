@@ -9,8 +9,8 @@ using UnityEngine.UI;
 
 public class Book : MonoBehaviour
 {
+    [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private List<Recipe> recipes; 
-
 
     // Left Recipe
     [Header("Left Recip Text")]
@@ -38,12 +38,12 @@ public class Book : MonoBehaviour
 
     //Add Recipe Canvas
     [Header("Add Recipe Input Text")]
-    [SerializeField] private GameObject createRecipeCanvasDisplayButton;
+    [SerializeField] private GameObject createRecipeCanvasDisplayLeftButton;
+    [SerializeField] private GameObject createRecipeCanvasDisplayRightButton;
     [SerializeField] private GameObject createRecipeCanvas;
     [SerializeField] private TMP_InputField createRecipeTitle;
     [SerializeField] private TMP_InputField createRecipeIngredients;
     [SerializeField] private TMP_InputField createRecipeDescription;
-
 
     private int currentRecipeIndex = 0;
 
@@ -57,13 +57,14 @@ public class Book : MonoBehaviour
 
     private void ShowCurrentRecipe()
     {
-        if(recipes.Count > 0 )
+        ShowRecipe(leftRecipeTitle, leftRecipeIngredients, leftRecipeDescription, currentRecipeIndex);
+        if(currentRecipeIndex + 1 <= recipes.Count)
         {
-            ShowRecipe(leftRecipeTitle, leftRecipeIngredients, leftRecipeDescription, currentRecipeIndex);
-            if(currentRecipeIndex + 1 <= recipes.Count - 1)
-            {
-                ShowRecipe(rightRecipeTitle, rightRecipeIngredients, rightRecipeDescription, currentRecipeIndex + 1);
-            }
+            ShowRecipe(rightRecipeTitle, rightRecipeIngredients, rightRecipeDescription, currentRecipeIndex + 1);
+        }
+        else
+        {
+            HideRecipe(rightRecipeTitle, rightRecipeIngredients, rightRecipeDescription);
         }
         leftNumPage.text = (currentRecipeIndex+1).ToString();
         rightNumPage.text = (currentRecipeIndex+2).ToString();
@@ -71,15 +72,44 @@ public class Book : MonoBehaviour
 
     private void ShowRecipe(TMP_Text _title, TMP_Text _ingredients, TMP_Text _description, int recipeIndex)
     {
-        _title.text = recipes[recipeIndex].title;
-            
-        _ingredients.text = "<b><u>Ingredients :</u></b>\n";
-        foreach(string ingredient in recipes[recipeIndex].ingredients)
+        if(recipeIndex <= recipes.Count - 1)
         {
-            _ingredients.text += "\t" + ingredient + "\n";
-        }
+            _title.gameObject.SetActive(true);
+            _ingredients.gameObject.SetActive(true);
+            _description.gameObject.SetActive(true);
+            _title.text = recipes[recipeIndex].title;
+            
+            _ingredients.text = "<b><u>Ingredients :</u></b>\n";
+            foreach(string ingredient in recipes[recipeIndex].ingredients)
+            {
+                _ingredients.text += "\t" + ingredient + "\n";
+            }
 
-        _description.text = "<b><u>Description :</u></b>\n\t" + recipes[recipeIndex].description;
+            _description.text = "<b><u>Description :</u></b>\n\t" + recipes[recipeIndex].description;
+            createRecipeCanvasDisplayLeftButton.SetActive(false);
+            createRecipeCanvasDisplayRightButton.SetActive(false);
+        }
+        else
+        {
+            if(recipeIndex % 2 == 0)
+            {
+                createRecipeCanvasDisplayLeftButton.SetActive(true);
+            }
+            else
+            {
+                createRecipeCanvasDisplayRightButton.SetActive(true);
+            }
+            _title.gameObject.SetActive(false);
+            _ingredients.gameObject.SetActive(false);
+            _description.gameObject.SetActive(false);
+        }
+    }
+
+    private void HideRecipe(TMP_Text _title, TMP_Text _ingredients, TMP_Text _description)
+    {
+        _title.gameObject.SetActive(false);
+        _ingredients.gameObject.SetActive(false);
+        _description.gameObject.SetActive(false);
     }
 
     public void PreviousPage()
@@ -91,14 +121,14 @@ public class Book : MonoBehaviour
         }
         else
         {
-            currentRecipeIndex = recipes.Count - 1;
+            currentRecipeIndex = recipes.Count;
             ShowCurrentRecipe();
         }
     }
 
     public void NextPage()
     {
-        if(currentRecipeIndex + 2 <= recipes.Count - 1)
+        if(currentRecipeIndex + 2 <= recipes.Count)
         {
             currentRecipeIndex += 2;
             ShowCurrentRecipe();
@@ -116,7 +146,7 @@ public class Book : MonoBehaviour
         displayCanvas.SetActive(true);
     }
 
-    public void HideRecipe()
+    public void CloseRecipe()
     {
         displayCanvas.SetActive(false);
     }
@@ -124,11 +154,21 @@ public class Book : MonoBehaviour
     public void DisplayCreateRecipeCanvas()
     {
         createRecipeCanvas.SetActive(true);
+        playerMovement.enabled = false;
+    }
+
+    public void CloseCreateRecipeCanvas()
+    {
+        Debug.Log("ahhh");
+        createRecipeCanvas.SetActive(false);
+        playerMovement.enabled = true;
     }
 
     public void AddCreatedRecipe()
     {
         Recipe new_recipe = new Recipe();
         new_recipe.title = createRecipeTitle.text;
+
+        playerMovement.enabled = true;
     }
 }

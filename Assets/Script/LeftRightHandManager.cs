@@ -1,41 +1,43 @@
 using Unity.Mathematics;
+using UnityEditor;
 using UnityEngine;
 
 public class LeftRightHandManager : MonoBehaviour
 {   
     [SerializeField] private ObjetSelector objectSelector;
-    private GameObject leftHandObject;
-    private GameObject rightHandObject;
-
     [SerializeField] private Camera leftHandCamera;
     [SerializeField] private Camera rightHandCamera;
 
+
+    private GameObject leftHandObject;
+    private GameObject rightHandObject;
+
     private GameObject new_hand_object;
 
-    public void HandObject(int witch)
+    public void HandObject(int which)
     {
         new_hand_object = objectSelector.selectedObject;
         
         if(LayerMask.NameToLayer("Pickable") == new_hand_object.layer)
         {
-            TakeObject(witch);
+            TakeObject(which);
         }
         else if(LayerMask.NameToLayer("Container") == new_hand_object.layer)
         {
-            PlaceObjectInContainer(witch);
+            PlaceObjectInContainer(which);
         }
         else
         {
-            DropObject(witch);
+            DropObject(which);
         }
 
         objectSelector.selectedObject = null;
         objectSelector.handSelector.SetActive(false);
     }
 
-    private void TakeObject(int witch)
+    private void TakeObject(int which)
     {
-        if(witch == 0)
+        if(which == 0)
         {
             if(leftHandObject != null){
                 leftHandObject.transform.position = new_hand_object.transform.position;
@@ -44,34 +46,35 @@ public class LeftRightHandManager : MonoBehaviour
             leftHandObject = new_hand_object;
             SetObjectPositionInUi(leftHandObject.transform, leftHandCamera, Quaternion.Euler(-45, 25, 15));
         }
-        else if(witch == 1)
+        else if(which == 1)
         {
             if(rightHandObject != null){
                 rightHandObject.transform.position = new_hand_object.transform.position;
                 rightHandObject.transform.rotation = Quaternion.identity;
             }
             rightHandObject = new_hand_object;
+            
             SetObjectPositionInUi(rightHandObject.transform, rightHandCamera, Quaternion.Euler(-45, -25, 15));
         }
     }
     
-    private void PlaceObjectInContainer(int witch)
+    private void PlaceObjectInContainer(int which)
     {
-        if(witch == 0 && leftHandObject != null)
+        if(which == 0 && leftHandObject != null)
         {
             SetObjectPositionInContainer(leftHandObject.transform, objectSelector.selectedObject.transform);
             leftHandObject = null;
         }
-        else if(witch == 1 && rightHandObject != null)
+        else if(which == 1 && rightHandObject != null)
         {
             SetObjectPositionInContainer(rightHandObject.transform, objectSelector.selectedObject.transform);
             rightHandObject = null;
         }
     }
     
-    private void DropObject(int witch)
+    private void DropObject(int which)
     {
-        if(witch == 0)
+        if(which == 0)
         {
             if(leftHandObject != null)
             {
@@ -79,7 +82,7 @@ public class LeftRightHandManager : MonoBehaviour
                 leftHandObject = null;
             }
         }
-        else if(witch == 1)
+        else if(which == 1)
         {
             if(rightHandObject != null)
             {
@@ -91,6 +94,8 @@ public class LeftRightHandManager : MonoBehaviour
 
     private void SetObjectPositionInUi(Transform _objectTransform, Camera objectCamera, Quaternion _rotation)
     {
+        _objectTransform.GetComponent<Rigidbody>().useGravity = false;
+
         _objectTransform.rotation = _rotation;
 
         Bounds objectBounds = CalculateGlobalBounds(_objectTransform);
@@ -113,6 +118,7 @@ public class LeftRightHandManager : MonoBehaviour
 
     private void SetObjectPositionInContainer(Transform _objectTransform, Transform _containerTransform)
     {
+        _objectTransform.GetComponent<Rigidbody>().useGravity = true;
         _objectTransform.rotation = Quaternion.Euler(0,0,0);
 
         Bounds objectBounds = CalculateGlobalBounds(_objectTransform);
@@ -122,6 +128,7 @@ public class LeftRightHandManager : MonoBehaviour
 
     private void SetObjectPositionInWorld(Transform _objectTransform)
     {
+        _objectTransform.GetComponent<Rigidbody>().useGravity = true;
         _objectTransform.rotation = Quaternion.Euler(0,0,0);
 
         Bounds objectBounds = CalculateGlobalBounds(_objectTransform);

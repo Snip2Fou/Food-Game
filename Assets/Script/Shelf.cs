@@ -188,6 +188,7 @@ public class Shelf : MonoBehaviour
     public void SetActualFurniture(int _new_index)
     {
         actualFurnitureIndex = _new_index;
+        ObjectButton.ResetColor();
         DisplayInventoryObject();
     }
 }

@@ -7,26 +7,77 @@ using UnityEngine.UI;
 
 public class ObjectButton : MonoBehaviour, IPointerDownHandler, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
-    public Shelf shelf;
+    private Color originalColor;
 
+    private static GameObject lastSelectedObject;
+
+    private Image image;
+
+    private GameObject draggedIcon;
+
+    private Canvas parentCanvas;
+
+    void Start()
+    {
+        image = GetComponent<Image>();
+        originalColor = image.color;
+        parentCanvas = GetComponentInParent<Canvas>();
+    }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        gameObject.GetComponent<Image>().color = new Color(0.45f, 0.45f, 0.45f, 1);
+        if (lastSelectedObject != null && lastSelectedObject != gameObject)
+        {
+            Image lastImage = lastSelectedObject.GetComponent<Image>();
+            if (lastImage != null)
+            {
+                lastImage.color = lastImage.GetComponent<ObjectButton>().originalColor;
+            }
+        }
+
+        image.color = new Color(0.75f, 0.75f, 0.75f, 1);
+
+        lastSelectedObject = gameObject;
+    }
+
+    public static void ResetColor()
+    { 
+        if(lastSelectedObject != null)
+        {
+            Image lastImage = lastSelectedObject.GetComponent<Image>();
+            if (lastImage != null)
+            {
+                lastImage.color = lastImage.GetComponent<ObjectButton>().originalColor;
+            }
+        }
+        lastSelectedObject = null;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log("BeginDrag");
+        draggedIcon = Instantiate(gameObject, parentCanvas.transform, true);
+        draggedIcon.GetComponent<Image>().raycastTarget = false;
+        draggedIcon.GetComponent<Image>().color = new Color(image.color.r, image.color.g, image.color.b, 0.5f);
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        Debug.Log("OnDrag");
+        draggedIcon.transform.position = eventData.position;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        Debug.Log("EndDrag");
+        GameObject hitObject = eventData.pointerEnter;
+        if (hitObject != null)
+        {
+            if (hitObject.name == "LeftHandObjectImage" || hitObject.name == "RightHandObjectImage")
+            {
+                transform.parent = hitObject.transform;
+                transform.position = hitObject.transform.position;
+                image.enabled = false;
+                lastSelectedObject = null;
+            }
+        }
+        DestroyImmediate(draggedIcon);
     }
 }

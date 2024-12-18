@@ -10,7 +10,7 @@ public class ObjetSelector : MonoBehaviour
     private Camera mainCamera;
 
     [SerializeField] public GameObject handSelector;
-    [SerializeField] private InputActionReference interactActionReference;
+    [SerializeField] public InputActionReference interactActionReference;
 
     RaycastHit hit;
     public GameObject hoveredGrabableObject;
@@ -45,7 +45,7 @@ public class ObjetSelector : MonoBehaviour
         Ray ray = mainCamera.ScreenPointToRay(mousePos);
 
         Debug.DrawRay(mainCamera.transform.position,  ray.direction * 1.5f, Color.cyan);
-        if(Physics.Raycast(ray, out hit, 1.5f, LayerMask.GetMask("Pickable","Container", "Placement")))
+        if(Physics.Raycast(ray, out hit, 1.5f, LayerMask.GetMask("Pickable","Container", "Placement", "Shelf")))
         {   
             if(hoveredGrabableObject != null && hit.collider.gameObject != hoveredGrabableObject)
             {
@@ -73,10 +73,18 @@ public class ObjetSelector : MonoBehaviour
     {
         if(hoveredGrabableObject != null)
         {
-            handSelector.SetActive(true);   
-            handSelector.transform.SetPositionAndRotation(hit.point, new Quaternion(handSelector.transform.rotation.x, transform.rotation.y,  handSelector.transform.rotation.z, 1));
-            selectedObject = hoveredGrabableObject;
-            mousePositionOnSelected = hit.point;
+            if(LayerMask.NameToLayer("Shelf") == hoveredGrabableObject.layer)
+            {
+                hoveredGrabableObject.GetComponent<Shelf>().DisplayShelfCanvas();
+                enabled = false;
+            }
+            else
+            {
+                handSelector.SetActive(true);   
+                handSelector.transform.SetPositionAndRotation(hit.point, new Quaternion(handSelector.transform.rotation.x, transform.rotation.y,  handSelector.transform.rotation.z, 1));
+                selectedObject = hoveredGrabableObject;
+                mousePositionOnSelected = hit.point;
+            }
         }
         else if(!pointerOverGameObject)
         {

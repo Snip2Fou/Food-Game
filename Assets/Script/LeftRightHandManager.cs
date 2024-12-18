@@ -9,8 +9,8 @@ public class LeftRightHandManager : MonoBehaviour
     [SerializeField] private Camera rightHandCamera;
 
 
-    private GameObject leftHandObject;
-    private GameObject rightHandObject;
+    public GameObject leftHandObject;
+    public GameObject rightHandObject;
 
     private GameObject new_hand_object;
 

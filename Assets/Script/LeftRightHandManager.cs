@@ -1,16 +1,20 @@
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
 public class LeftRightHandManager : MonoBehaviour
 {   
     [SerializeField] private ObjetSelector objectSelector;
-    [SerializeField] private Camera leftHandCamera;
-    [SerializeField] private Camera rightHandCamera;
-
+    [SerializeField] private IngredientsList ingredientsList;
+    public Camera leftHandCamera;
+    public Camera rightHandCamera;
 
     public GameObject leftHandObject;
     public GameObject rightHandObject;
+
+    public Ingredient leftHandIngredient;
+    public Ingredient rightHandIngredient;
 
     private GameObject new_hand_object;
 
@@ -44,6 +48,7 @@ public class LeftRightHandManager : MonoBehaviour
                 leftHandObject.transform.rotation = Quaternion.identity;
             }
             leftHandObject = new_hand_object;
+            leftHandIngredient = ingredientsList.GetIngredientByName(leftHandObject.name);
             SetObjectPositionInUi(leftHandObject.transform, leftHandCamera, Quaternion.Euler(-45, 25, 15));
         }
         else if(which == 1)
@@ -53,7 +58,7 @@ public class LeftRightHandManager : MonoBehaviour
                 rightHandObject.transform.rotation = Quaternion.identity;
             }
             rightHandObject = new_hand_object;
-            
+            rightHandIngredient = ingredientsList.GetIngredientByName(rightHandObject.name);
             SetObjectPositionInUi(rightHandObject.transform, rightHandCamera, Quaternion.Euler(-45, -25, 15));
         }
     }
@@ -92,7 +97,7 @@ public class LeftRightHandManager : MonoBehaviour
         }
     }
 
-    private void SetObjectPositionInUi(Transform _objectTransform, Camera objectCamera, Quaternion _rotation)
+    public void SetObjectPositionInUi(Transform _objectTransform, Camera objectCamera, Quaternion _rotation)
     {
         _objectTransform.GetComponent<Rigidbody>().useGravity = false;
 

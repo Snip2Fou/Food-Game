@@ -25,7 +25,7 @@ public class Shelf : MonoBehaviour
     private List<Furniture> furnitures = new List<Furniture>();
     private int actualFurnitureIndex = 0;
     [SerializeField][Range(1,3)] private int nbFurnitures = 1;
-    private int nbIngredientsPerFurniture = 24;
+    public int maxIngredientsPerFurniture = 24;
     [SerializeField] private IngredientsList ingredientsList;
 
     private GameObject selectedObject;
@@ -111,17 +111,22 @@ public class Shelf : MonoBehaviour
             }
             DestroyImmediate(child.gameObject);
         }
+        
 
         for(int i = 0; i < actual_furniture.ingredients.Count; i++)
         {
             if(i < inventoryParent.transform.childCount)
             {
                 inventoryParent.transform.GetChild(i).transform.GetChild(0).transform.GetComponent<Image>().sprite = actual_furniture.ingredients[i].rawSprite;
+                inventoryParent.transform.GetChild(i).transform.GetComponent<ObjectButton>().shelf = this;
+                inventoryParent.transform.GetChild(i).transform.GetComponent<ObjectButton>().ingredient = actual_furniture.ingredients[i];
             }
             else
             {
                 GameObject new_inventory_object = Instantiate(inventoryPrefabs, inventoryParent.transform);
                 new_inventory_object.transform.GetChild(0).GetComponent<Image>().sprite = actual_furniture.ingredients[i].rawSprite;
+                new_inventory_object.transform.GetComponent<ObjectButton>().shelf = this;
+                new_inventory_object.transform.GetComponent<ObjectButton>().ingredient = actual_furniture.ingredients[i];
             }
         }
     }
@@ -136,42 +141,14 @@ public class Shelf : MonoBehaviour
 
     private void DisplayHand()
     {
-        if(leftRightHandManager.leftHandObject != null)
+        if(leftRightHandManager.leftHandIngredient != null)
         {
-            foreach(Ingredient ingredient in ingredientsList.ingredients)
-            {
-                if(leftRightHandManager.leftHandObject.name.Contains(ingredient.rawPrefabs.name))
-                {
-                    leftHandImage.sprite = ingredient.rawSprite;
-                }
-                else if(leftRightHandManager.leftHandObject.name.Contains(ingredient.cookedPrefabs.name))
-                {
-                    leftHandImage.sprite = ingredient.cookedSprite;
-                }
-                else if(leftRightHandManager.leftHandObject.name.Contains(ingredient.burntPrefabs.name))
-                {
-                    leftHandImage.sprite = ingredient.burntSprite;
-                }
-            }
+            rightHandImage.sprite = leftRightHandManager.leftHandIngredient.actualSprite;
         }
 
-        if(leftRightHandManager.rightHandObject != null)
+        if(leftRightHandManager.rightHandIngredient != null)
         {
-            foreach(Ingredient ingredient in ingredientsList.ingredients)
-            {
-                if(leftRightHandManager.rightHandObject.name.Contains(ingredient.rawPrefabs.name))
-                {
-                    rightHandImage.sprite = ingredient.rawSprite;
-                }
-                else if(leftRightHandManager.rightHandObject.name.Contains(ingredient.cookedPrefabs.name))
-                {
-                    rightHandImage.sprite = ingredient.cookedSprite;
-                }
-                else if(leftRightHandManager.rightHandObject.name.Contains(ingredient.burntPrefabs.name))
-                {
-                    rightHandImage.sprite = ingredient.burntSprite;
-                }
-            }
+            rightHandImage.sprite = leftRightHandManager.rightHandIngredient.actualSprite;
         }
     }
 
@@ -190,5 +167,10 @@ public class Shelf : MonoBehaviour
         actualFurnitureIndex = _new_index;
         ObjectButton.ResetColor();
         DisplayInventoryObject();
+    }
+
+    public Furniture GetActualFurniture()
+    {
+        return furnitures[actualFurnitureIndex];
     }
 }

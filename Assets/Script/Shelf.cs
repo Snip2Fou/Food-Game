@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -24,22 +25,25 @@ public class Shelf : MonoBehaviour
     public ShelfType shelfType;
     private List<Furniture> furnitures = new List<Furniture>();
     private int actualFurnitureIndex = 0;
-    [SerializeField][Range(1,3)] private int nbFurnitures = 1;
     public int maxIngredientsPerFurniture = 24;
-    [SerializeField] private IngredientsList ingredientsList;
+    private bool isUsed = false;
 
-    private GameObject selectedObject;
-    private int selectedObjectIndex;
+    // Général Variable
+    [SerializeField] private IngredientsList ingredientsList;
     [SerializeField] private LeftRightHandManager leftRightHandManager;
 
-    private bool isUsed = false;
+
+    //Shelf Buttton 
+    [SerializeField] private GameObject shelfButtonParent;
+    [SerializeField] private GameObject shelfButtonPrefabs;
+    private int maxButton = 6;
 
 
     //UI
     [Header("UI")] 
     [SerializeField] private GameObject shelfCanvas;
     [SerializeField] private TMP_Text selfTypeText;
-    [SerializeField] private List<Button> shelfFurnitureButtons;
+    private List<GameObject> shelfFurnitureButtons = new List<GameObject>();
     [SerializeField] private GameObject inventoryParent;
     [SerializeField] private GameObject inventoryPrefabs;
     [SerializeField] private TMP_Text selectedIngredientNameText;
@@ -52,12 +56,38 @@ public class Shelf : MonoBehaviour
     void Start()
     {
         shelfCanvas.SetActive(false);
-        for(int i = 0; i < nbFurnitures; i++)
+    }
+
+
+    public void DisplayShelfCanvas()
+    {
+        InitFurniture();
+
+        selfTypeText.text = shelfType.ToString();
+
+        DisplayInventoryObject();
+
+        DisplayHand();
+
+        isUsed = true;
+        shelfCanvas.SetActive(true);
+    }
+
+    private void InitFurniture()
+    {
+        for (int j = 0; j < shelfFurnitureButtons.Count; j++)
         {
+            DestroyImmediate(shelfFurnitureButtons[j]);
+        }
+
+        int nb_furniture = UnityEngine.Random.Range(1, maxButton+1);
+        for (int i = 0; i < nb_furniture; i++)
+        {
+            SpawnShelfButton(i);
             Furniture furniture = new Furniture();
-            foreach(Ingredient ingredient in ingredientsList.ingredients)
-            {  
-                if(UnityEngine.Random.value <= 0.5)
+            foreach (Ingredient ingredient in ingredientsList.ingredients)
+            {
+                if (UnityEngine.Random.value <= 0.5)
                 {
                     furniture.ingredients.Add(ingredient);
                 }
@@ -66,37 +96,13 @@ public class Shelf : MonoBehaviour
         }
     }
 
-
-    public void DisplayShelfCanvas()
+    private void SpawnShelfButton(int _index) 
     {
-        DisplayFurniture();
+        GameObject new_shelf_button = Instantiate<GameObject>(shelfButtonPrefabs, shelfButtonParent.transform, false);
+        new_shelf_button.GetComponent<Button>().onClick.AddListener(() => { SetActualFurniture(_index); });
+        new_shelf_button.GetComponentInChildren<TextMeshProUGUI>().text = "Etagère " + _index; 
 
-        selfTypeText.text = shelfType.ToString();
-
-        DisplayInventoryObject();
-
-        if(selectedObject != null)
-        {
-            DisplaySelectedObject();
-        }
-
-        DisplayHand();
-
-        isUsed = true;
-        shelfCanvas.SetActive(true);
-    }
-
-    private void DisplayFurniture()
-    {
-        for(int i = 0; i < 2; i++)
-        {
-            shelfFurnitureButtons[i].gameObject.SetActive(true);
-        }
-
-        for(int i = nbFurnitures - 1; i < 2; i++)
-        {
-            shelfFurnitureButtons[i].gameObject.SetActive(false);
-        }
+        shelfFurnitureButtons.Add(new_shelf_button);
     }
 
     private void DisplayInventoryObject()
@@ -131,19 +137,17 @@ public class Shelf : MonoBehaviour
         }
     }
 
-    private void DisplaySelectedObject()
+    public void DisplaySelectedObject(Ingredient _ingredient)
     {
-        Furniture actual_furniture = furnitures[actualFurnitureIndex];
-
-        selectedIngredientNameText.text = actual_furniture.ingredients[selectedObjectIndex].name;
-        selectedIngredientDescriptionText.text = actual_furniture.ingredients[selectedObjectIndex].description;
+        selectedIngredientNameText.text = _ingredient.name;
+        selectedIngredientDescriptionText.text = _ingredient.description;
     }
 
     private void DisplayHand()
     {
         if(leftRightHandManager.leftHandIngredient != null)
         {
-            rightHandImage.sprite = leftRightHandManager.leftHandIngredient.actualSprite;
+            leftHandImage.sprite = leftRightHandManager.leftHandIngredient.actualSprite;
         }
 
         if(leftRightHandManager.rightHandIngredient != null)

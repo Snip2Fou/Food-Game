@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 2601390388977534920}
   - component: {fileID: 8266595564299557930}
   - component: {fileID: 7233129401604462301}
-  - component: {fileID: -6461689822170986454}
   - component: {fileID: 1200547023614092336}
+  - component: {fileID: -4235970703109336022}
   m_Layer: 3
   m_Name: corn_Cob
   m_TagString: Untagged
@@ -87,27 +87,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &-6461689822170986454
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2164171502511104585}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.6989272, y: 1.2728248, z: 0.7180922}
-  m_Center: {x: -0.00041657686, y: -0.016000122, z: -0.006179929}
 --- !u!54 &1200547023614092336
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -135,6 +114,28 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!64 &-4235970703109336022
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2164171502511104585}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 9118120728296402026, guid: 92172b7fe2d45984f94c52d203ecfe20, type: 3}
 --- !u!1 &4579825233290016486
 GameObject:
   m_ObjectHideFlags: 0

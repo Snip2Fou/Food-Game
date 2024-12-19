@@ -55,8 +55,12 @@ public class ObjectButton : MonoBehaviour, IPointerDownHandler, IDragHandler, IB
         if(image != null && inventoryObject){
               image.color = new Color(0.75f, 0.75f, 0.75f, 1);
         }
+        if (inventoryObject)
+        {
+            lastSelectedObject = gameObject;
+        }
 
-        lastSelectedObject = gameObject;
+        shelf.DisplaySelectedObject(ingredient);
     }
 
     public static void ResetColor()

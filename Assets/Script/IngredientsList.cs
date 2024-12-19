@@ -11,21 +11,21 @@ public class IngredientsList : MonoBehaviour
     {
         foreach(Ingredient ingredient in ingredients)
         {
-            if(_name.Contains(ingredient.rawPrefabs.name))
+            if(ingredient.rawPrefabs != null && _name.Contains(ingredient.rawPrefabs.name))
             {
                Ingredient new_ingredient = new Ingredient(ingredient);
                 new_ingredient.actualPrefabs = new_ingredient.rawPrefabs;
                 new_ingredient.actualSprite = new_ingredient.rawSprite;
                 return new_ingredient;
             }
-            else if(_name.Contains(ingredient.cookedPrefabs.name))
+            else if(ingredient.cookedPrefabs != null && _name.Contains(ingredient.cookedPrefabs.name))
             {
                 Ingredient new_ingredient = new Ingredient(ingredient);
                 new_ingredient.actualPrefabs = new_ingredient.cookedPrefabs;
                 new_ingredient.actualSprite = new_ingredient.cookedSprite;
                 return new_ingredient;
             }
-            else if(_name.Contains(ingredient.burntPrefabs.name))
+            else if(ingredient.burntPrefabs != null && _name.Contains(ingredient.burntPrefabs.name))
             {
                 Ingredient new_ingredient = new Ingredient(ingredient);
                 new_ingredient.actualPrefabs = new_ingredient.burntPrefabs;

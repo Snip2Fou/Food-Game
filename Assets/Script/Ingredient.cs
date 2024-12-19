@@ -18,6 +18,9 @@ public class Ingredient : ScriptableObject
     public GameObject burntPrefabs;
     public Sprite burntSprite;
 
+    public bool cookable;
+    public int cookingTime;
+
     public Ingredient(Ingredient ingredient)
     {
         name = ingredient.name;
@@ -30,5 +33,19 @@ public class Ingredient : ScriptableObject
         burntSprite = ingredient.burntSprite;
         actualPrefabs = rawPrefabs;
         actualSprite = rawSprite;
+    }
+
+    public void SetCooked()
+    {
+        name = "Cooked " + name;
+        actualPrefabs = cookedPrefabs;
+        actualSprite = cookedSprite;
+    }
+
+    public void SetBurnt()
+    {
+        name = "Burnt " + name;
+        actualPrefabs = burntPrefabs;
+        actualSprite = burntSprite;
     }
 }

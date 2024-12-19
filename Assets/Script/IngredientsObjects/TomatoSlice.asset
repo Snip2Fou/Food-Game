@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f0f3c0f3ce20dd4490f1aa938edfff5, type: 3}
+  m_Name: TomatoSlice
+  m_EditorClassIdentifier: 
+  name: Tomato Slice
+  description: Une rondelle de tomate
+  actualPrefabs: {fileID: 6213259828783532099, guid: 7985cb9eff186a545b6d64a3a08f3aa0,
+    type: 3}
+  actualSprite: {fileID: 21300000, guid: 02b821ef50cbef34bb7ce06aab0e6ff9, type: 3}
+  rawPrefabs: {fileID: 6213259828783532099, guid: 7985cb9eff186a545b6d64a3a08f3aa0,
+    type: 3}
+  rawSprite: {fileID: 21300000, guid: 02b821ef50cbef34bb7ce06aab0e6ff9, type: 3}
+  cookedPrefabs: {fileID: 0}
+  cookedSprite: {fileID: 0}
+  burntPrefabs: {fileID: 0}
+  burntSprite: {fileID: 0}
+  cookable: 0
+  cookingTime: 0

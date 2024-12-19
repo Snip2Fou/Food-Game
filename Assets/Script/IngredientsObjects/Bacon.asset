@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Bacon
   m_EditorClassIdentifier: 
   name: Bacon
-  description: Peut se cuire !
+  description: De la viande !
   actualPrefabs: {fileID: 1655350519324790408, guid: 0a11f0d465e90eb4ab0932a667ee109c,
     type: 3}
   actualSprite: {fileID: 21300000, guid: 95911f0da2c9c8746a6d4c58faa461df, type: 3}
@@ -26,3 +26,5 @@ MonoBehaviour:
   burntPrefabs: {fileID: 5947795732387088951, guid: d34f0d4b298c1b64ab19c3ac93740128,
     type: 3}
   burntSprite: {fileID: 21300000, guid: 765cd3e17873d9249914c68c49cf8433, type: 3}
+  cookable: 1
+  cookingTime: 300

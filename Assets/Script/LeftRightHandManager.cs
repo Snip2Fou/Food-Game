@@ -69,11 +69,13 @@ public class LeftRightHandManager : MonoBehaviour
         {
             SetObjectPositionInContainer(leftHandObject.transform, objectSelector.selectedObject.transform);
             leftHandObject = null;
+            leftHandIngredient = null;
         }
         else if(which == 1 && rightHandObject != null)
         {
             SetObjectPositionInContainer(rightHandObject.transform, objectSelector.selectedObject.transform);
             rightHandObject = null;
+            rightHandIngredient = null;
         }
     }
     
@@ -85,6 +87,7 @@ public class LeftRightHandManager : MonoBehaviour
             {
                 SetObjectPositionInWorld(leftHandObject.transform);
                 leftHandObject = null;
+                leftHandIngredient = null;
             }
         }
         else if(which == 1)
@@ -93,6 +96,7 @@ public class LeftRightHandManager : MonoBehaviour
             {
                 SetObjectPositionInWorld(rightHandObject.transform);
                 rightHandObject = null;
+                rightHandIngredient = null;
             }
         }
     }

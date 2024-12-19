@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Burger
   ingredients:
-  - Steak
-  - Pain
+  - {fileID: 11400000, guid: fdc01d582f75ed146b6d24a4e5440337, type: 2}
+  - {fileID: 11400000, guid: 542f7e51e3d8faf47b43ef390c9828f5, type: 2}
   description: Il faut

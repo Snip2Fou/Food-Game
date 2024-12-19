@@ -10,7 +10,8 @@ using UnityEngine.UI;
 public class Book : MonoBehaviour
 {
     [SerializeField] private PlayerMovement playerMovement;
-    [SerializeField] private List<Recipe> recipes; 
+    [SerializeField] private List<Recipe> recipes;
+    [SerializeField] private IngredientsList ingredientsList;
 
     // Left Recipe
     [Header("Left Recip Text")]
@@ -42,10 +43,27 @@ public class Book : MonoBehaviour
     [SerializeField] private GameObject createRecipeCanvasDisplayRightButton;
     [SerializeField] private GameObject createRecipeCanvas;
     [SerializeField] private TMP_InputField createRecipeTitle;
-    [SerializeField] private TMP_InputField createRecipeIngredients;
+    [SerializeField] private TMP_Dropdown createRecipeIngredientDropdown;
+    [SerializeField] private Button createRecipeAddIngredientsButton;
+    [SerializeField] private GameObject createRecipeIngredientsParent;
+    [SerializeField] private GameObject createRecipeIngredientsPrefabs;
     [SerializeField] private TMP_InputField createRecipeDescription;
+    private List<Ingredient> ingredientsForCreatedRecipe = new List<Ingredient>();
+
 
     private int currentRecipeIndex = 0;
+
+    private void Awake()
+    {
+        List<TMP_Dropdown.OptionData> options = new List<TMP_Dropdown.OptionData>();
+        foreach (Ingredient ingredient in ingredientsList.ingredients)
+        {
+            options.Add(new TMP_Dropdown.OptionData(ingredient.name, ingredient.actualSprite));
+        }
+        createRecipeIngredientDropdown.ClearOptions();
+        createRecipeIngredientDropdown.AddOptions(options);
+        createRecipeIngredientDropdown.RefreshShownValue();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -80,9 +98,9 @@ public class Book : MonoBehaviour
             _title.text = recipes[recipeIndex].title;
             
             _ingredients.text = "<b><u>Ingredients :</u></b>\n";
-            foreach(string ingredient in recipes[recipeIndex].ingredients)
+            foreach(Ingredient ingredient in recipes[recipeIndex].ingredients)
             {
-                _ingredients.text += "\t" + ingredient + "\n";
+                _ingredients.text += "\t" + ingredient.name + "\n";
             }
 
             _description.text = "<b><u>Description :</u></b>\n\t" + recipes[recipeIndex].description;
@@ -159,16 +177,39 @@ public class Book : MonoBehaviour
 
     public void CloseCreateRecipeCanvas()
     {
-        Debug.Log("ahhh");
         createRecipeCanvas.SetActive(false);
         playerMovement.enabled = true;
     }
 
+    public void AddIngredientForCreatedRecipe()
+    {
+        ingredientsForCreatedRecipe.Add(ingredientsList.ingredients[createRecipeIngredientDropdown.value]);
+        GameObject new_ingredient_object = Instantiate(createRecipeIngredientsPrefabs, createRecipeIngredientsParent.transform);
+        new_ingredient_object.GetComponentInChildren<TextMeshProUGUI>().text = ingredientsList.ingredients[createRecipeIngredientDropdown.value].name;
+        new_ingredient_object.GetComponentInChildren<Button>().onClick.AddListener(() => { RemoveIngredientForCreatedRecipe(ingredientsForCreatedRecipe.Count - 1); });
+    }
+
+    public void RemoveIngredientForCreatedRecipe(int _index)
+    {
+        ingredientsForCreatedRecipe.RemoveAt(_index);
+        DestroyImmediate(createRecipeIngredientsParent.transform.GetChild(_index).gameObject);
+    }
+
     public void AddCreatedRecipe()
     {
-        Recipe new_recipe = new Recipe();
-        new_recipe.title = createRecipeTitle.text;
+        if(createRecipeTitle.text != "" && ingredientsForCreatedRecipe.Count != 0 && createRecipeDescription.text != "")
+        {
+            Recipe new_recipe = new Recipe();
+            new_recipe.title = createRecipeTitle.text;
 
-        playerMovement.enabled = true;
+            new_recipe.ingredients = ingredientsForCreatedRecipe;
+
+            new_recipe.description = createRecipeDescription.text;
+
+            recipes.Add(new_recipe);
+
+            createRecipeCanvas.SetActive(false);
+            playerMovement.enabled = true;
+        }
     }
 }

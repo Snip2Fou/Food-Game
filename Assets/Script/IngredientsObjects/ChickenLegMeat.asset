@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ChickenLegMeat
   m_EditorClassIdentifier: 
   name: Chicken Leg Meat
-  description: Peut se cuire !
+  description: De la viande !
   actualPrefabs: {fileID: 9058849866393672627, guid: a81a5789c72593e48af2d8d37e6b4933,
     type: 3}
   actualSprite: {fileID: 21300000, guid: 2b0d2ca72370bf54fb0f44bcded30ced, type: 3}
@@ -26,3 +26,5 @@ MonoBehaviour:
   burntPrefabs: {fileID: 5377861837995863595, guid: 5d86674b48919e549bdf9fbb5581c58a,
     type: 3}
   burntSprite: {fileID: 21300000, guid: d53c764edd7242845be7ebba9e6227eb, type: 3}
+  cookable: 0
+  cookingTime: 250

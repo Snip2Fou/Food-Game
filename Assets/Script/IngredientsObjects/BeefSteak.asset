@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BeefSteak
   m_EditorClassIdentifier: 
   name: Beef Steak
-  description: Peut se cuire !
+  description: De la viande !
   actualPrefabs: {fileID: 1902271098695974524, guid: 2c25d42adeb174049963f6df4c9b7c9a,
     type: 3}
   actualSprite: {fileID: 21300000, guid: a335ab1976f86d743937768bcbdfdda2, type: 3}
@@ -26,3 +26,5 @@ MonoBehaviour:
   burntPrefabs: {fileID: 5328997636226339257, guid: 12713fb5b8d11f843a999a6fd1f7563a,
     type: 3}
   burntSprite: {fileID: 21300000, guid: 9b27fc306b42436498186c10f711fda7, type: 3}
+  cookable: 0
+  cookingTime: 500

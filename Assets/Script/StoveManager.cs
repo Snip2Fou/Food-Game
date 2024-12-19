@@ -36,6 +36,6 @@ public class StoveManager : MonoBehaviour
     {
         temperature = (int)temperatureSlider.value;
         temperatureText.text = temperature + "°C";
-        reelTemperatureButton.transform.rotation = Quaternion.Euler(0,90,temperature * 3);
+        reelTemperatureButton.transform.rotation = Quaternion.Euler(0,0,temperature * 3);
     }
 }

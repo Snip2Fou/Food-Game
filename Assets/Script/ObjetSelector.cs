@@ -1,9 +1,11 @@
 using System.Runtime.CompilerServices;
+using TreeEditor;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using static UnityEngine.GraphicsBuffer;
 
 public class ObjetSelector : MonoBehaviour
 {
@@ -80,8 +82,14 @@ public class ObjetSelector : MonoBehaviour
             }
             else
             {
-                handSelector.SetActive(true);   
-                handSelector.transform.SetPositionAndRotation(hit.point, new Quaternion(handSelector.transform.rotation.x, transform.rotation.y,  handSelector.transform.rotation.z, 1));
+                handSelector.SetActive(true);
+                handSelector.transform.position = hit.point;
+                Vector3 direction = transform.position - handSelector.transform.position;
+
+                direction.y = 0;
+                Quaternion lookRotation = Quaternion.LookRotation(direction);
+
+                handSelector.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, lookRotation.eulerAngles.y + 180, transform.rotation.eulerAngles.z);
                 selectedObject = hoveredGrabableObject;
                 mousePositionOnSelected = hit.point;
             }

@@ -1,9 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.PlasticSCM.Editor.WebApi;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -166,6 +162,7 @@ public class Book : MonoBehaviour
 
     public void CloseRecipe()
     {
+        ShowCurrentRecipe();
         displayCanvas.SetActive(false);
     }
 
@@ -207,6 +204,7 @@ public class Book : MonoBehaviour
             new_recipe.description = createRecipeDescription.text;
 
             recipes.Add(new_recipe);
+            ShowCurrentRecipe();
 
             createRecipeCanvas.SetActive(false);
             playerMovement.enabled = true;

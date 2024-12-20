@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f0f3c0f3ce20dd4490f1aa938edfff5, type: 3}
+  m_Name: GroundBeef
+  m_EditorClassIdentifier: 
+  name: Ground Beef
+  description: "Un Steak hach\xE9 !"
+  actualPrefabs: {fileID: 6808599801469802662, guid: 714cbdecdcb0a4645891357863b99738,
+    type: 3}
+  actualSprite: {fileID: 21300000, guid: 12ba4ddff90cc024b8a68a4d72a40a54, type: 3}
+  rawPrefabs: {fileID: 6808599801469802662, guid: 714cbdecdcb0a4645891357863b99738,
+    type: 3}
+  rawSprite: {fileID: 21300000, guid: 12ba4ddff90cc024b8a68a4d72a40a54, type: 3}
+  cookedPrefabs: {fileID: 5182101408359990397, guid: 1cadb7e9b63d1484db6a657066fdcd48,
+    type: 3}
+  cookedSprite: {fileID: 21300000, guid: fcab7347a0309f14291ae745098b6732, type: 3}
+  burntPrefabs: {fileID: 2592684031479428191, guid: 988d8c8a4b22ded45b9a582eb31c5b6b,
+    type: 3}
+  burntSprite: {fileID: 21300000, guid: 0bc8f52097f30bb43969d0e52e258dc8, type: 3}
+  cookable: 1
+  cookingTime: 400

@@ -10,10 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6ed339c2202109640b1aaf0c62a2f713, type: 3}
-  m_Name: Recipe
+  m_Name: Burger
   m_EditorClassIdentifier: 
   title: Burger
   ingredients:
   - {fileID: 11400000, guid: fdc01d582f75ed146b6d24a4e5440337, type: 2}
+  - {fileID: 11400000, guid: bf71228ca2c25114e9f566b58342d202, type: 2}
+  - {fileID: 11400000, guid: 91866e47e21f1cd48a83ba049ec933ac, type: 2}
   - {fileID: 11400000, guid: 542f7e51e3d8faf47b43ef390c9828f5, type: 2}
-  description: Il faut
+  - {fileID: 11400000, guid: 78a113ba17079e34189809d6f1b48621, type: 2}
+  - {fileID: 11400000, guid: 85e5d68a8e906fa499492f270fdf320a, type: 2}
+  description: "Pauser le dessous du pain dans une assiette. Faire cuire le Steak
+    et poser le sur le pain. Ajouter le cheddar, le bacon et la rondelle de tomate.
+    Puis refremer avec le haut du pain. C'est pr\xEAt, vous pouvez discuter."

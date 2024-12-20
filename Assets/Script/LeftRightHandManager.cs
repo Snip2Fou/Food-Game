@@ -1,6 +1,3 @@
-using Unity.Mathematics;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 
 public class LeftRightHandManager : MonoBehaviour
@@ -132,7 +129,7 @@ public class LeftRightHandManager : MonoBehaviour
 
         Bounds objectBounds = CalculateGlobalBounds(_objectTransform);
 
-        _objectTransform.position = new Vector3(_containerTransform.position.x, _containerTransform.position.y + (objectBounds.extents.y / 2), _containerTransform.position.z);
+        _objectTransform.position = new Vector3(_containerTransform.position.x, _containerTransform.position.y + (objectBounds.extents.y * 0.2f) + 0.1f, _containerTransform.position.z);
     }
 
     private void SetObjectPositionInWorld(Transform _objectTransform)
@@ -142,7 +139,7 @@ public class LeftRightHandManager : MonoBehaviour
 
         Bounds objectBounds = CalculateGlobalBounds(_objectTransform);
 
-        _objectTransform.position = new Vector3(objectSelector.mousePositionOnSelected.x, objectSelector.mousePositionOnSelected.y + (objectBounds.extents.y / 2), objectSelector.mousePositionOnSelected.z);
+        _objectTransform.position = new Vector3(objectSelector.mousePositionOnSelected.x, objectSelector.mousePositionOnSelected.y + (objectBounds.extents.y * 0.2f) + 0.1f, objectSelector.mousePositionOnSelected.z);
     } 
 
     private Bounds CalculateGlobalBounds(Transform target)

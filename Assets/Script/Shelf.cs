@@ -1,8 +1,5 @@
-using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -43,7 +40,7 @@ public class Shelf : MonoBehaviour
     [Header("UI")] 
     [SerializeField] private GameObject shelfCanvas;
     [SerializeField] private TMP_Text selfTypeText;
-    private List<GameObject> shelfFurnitureButtons = new List<GameObject>();
+    public List<GameObject> shelfFurnitureButtons = new List<GameObject>();
     [SerializeField] private GameObject inventoryParent;
     [SerializeField] private GameObject inventoryPrefabs;
     [SerializeField] private TMP_Text selectedIngredientNameText;
@@ -75,10 +72,18 @@ public class Shelf : MonoBehaviour
 
     private void InitFurniture()
     {
-        for (int j = 0; j < shelfFurnitureButtons.Count; j++)
+        List<Transform> children = new List<Transform>();
+        foreach (Transform child in shelfButtonParent.transform)
         {
-            DestroyImmediate(shelfFurnitureButtons[j]);
+            children.Add(child);
         }
+
+        foreach (Transform child in children)
+        {
+            Destroy(child.gameObject);
+        }
+        shelfFurnitureButtons.Clear();
+        furnitures.Clear();
 
         int nb_furniture = UnityEngine.Random.Range(1, maxButton+1);
         for (int i = 0; i < nb_furniture; i++)
@@ -100,7 +105,7 @@ public class Shelf : MonoBehaviour
     {
         GameObject new_shelf_button = Instantiate<GameObject>(shelfButtonPrefabs, shelfButtonParent.transform, false);
         new_shelf_button.GetComponent<Button>().onClick.AddListener(() => { SetActualFurniture(_index); });
-        new_shelf_button.GetComponentInChildren<TextMeshProUGUI>().text = "Etagère " + _index; 
+        new_shelf_button.GetComponentInChildren<TextMeshProUGUI>().text = "Etagère " + (_index+1).ToString(); 
 
         shelfFurnitureButtons.Add(new_shelf_button);
     }
@@ -149,10 +154,26 @@ public class Shelf : MonoBehaviour
         {
             leftHandImage.sprite = leftRightHandManager.leftHandIngredient.actualSprite;
         }
+        else
+        {
+            if(leftHandImage.transform.childCount > 0)
+            {
+                DestroyImmediate(leftHandImage.transform.GetChild(0).gameObject);
+            }
+            leftHandImage.sprite = null;
+        }
 
         if(leftRightHandManager.rightHandIngredient != null)
         {
             rightHandImage.sprite = leftRightHandManager.rightHandIngredient.actualSprite;
+        }
+        else
+        {
+            if(rightHandImage.transform.childCount > 0)
+            {
+                DestroyImmediate(rightHandImage.transform.GetChild(0).gameObject);
+            }
+            rightHandImage.sprite = null;
         }
     }
 

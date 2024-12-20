@@ -1,11 +1,6 @@
-using System.Runtime.CompilerServices;
-using TreeEditor;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using static UnityEngine.GraphicsBuffer;
 
 public class ObjetSelector : MonoBehaviour
 {
@@ -47,19 +42,30 @@ public class ObjetSelector : MonoBehaviour
         Ray ray = mainCamera.ScreenPointToRay(mousePos);
 
         Debug.DrawRay(mainCamera.transform.position,  ray.direction * 1.5f, Color.cyan);
-        if(Physics.Raycast(ray, out hit, 1.5f, LayerMask.GetMask("Pickable","Container", "Placement", "Shelf")))
+        if(Physics.Raycast(ray, out hit, 1.5f, LayerMask.GetMask("Pickable","Container", "Placement", "Shelf", "Book")))
         {   
-            if(hoveredGrabableObject != null && hit.collider.gameObject != hoveredGrabableObject)
+            if(LayerMask.NameToLayer("Book") != hit.collider.gameObject.layer)
             {
-                hoveredGrabableObject.GetComponent<Outline>().enabled = false;
-            }
+                if (hoveredGrabableObject != null && hit.collider.gameObject != hoveredGrabableObject)
+                {
+                    hoveredGrabableObject.GetComponent<Outline>().enabled = false;
+                }
 
-            hoveredGrabableObject = hit.collider.gameObject;
-            if(hoveredGrabableObject.GetComponent<Outline>() == null)
-            {
-                hoveredGrabableObject.AddComponent<Outline>();
+                hoveredGrabableObject = hit.collider.gameObject;
+                if (hoveredGrabableObject.GetComponent<Outline>() == null)
+                {
+                    hoveredGrabableObject.AddComponent<Outline>();
+                }
+                hoveredGrabableObject.GetComponent<Outline>().enabled = true;
             }
-            hoveredGrabableObject.GetComponent<Outline>().enabled = true;
+            else
+            {
+                if (hoveredGrabableObject != null)
+                {
+                    hoveredGrabableObject.GetComponent<Outline>().enabled = false;
+                }
+                hoveredGrabableObject = null;
+            }
         }
         else
         {

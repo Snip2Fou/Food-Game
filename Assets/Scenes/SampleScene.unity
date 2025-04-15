@@ -3923,8 +3923,8 @@ MonoBehaviour:
   moveActionReference: {fileID: -9027781931460596742, guid: 7073a9811b2d1144ba57590cd0e55419,
     type: 3}
   characterController: {fileID: 605214783}
-  moveSpeed: 2000
-  rotateSpeed: 200
+  moveSpeed: 750
+  rotateSpeed: 150
 --- !u!143 &605214783
 CharacterController:
   m_ObjectHideFlags: 0
